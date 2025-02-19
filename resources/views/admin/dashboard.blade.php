@@ -14,4 +14,13 @@
             </div>
         </div>
     </div>
+    <form method="POST" action="{{ route('adminlogout') }}">
+        @csrf
+
+        <x-dropdown-link :href="route('adminlogout')"
+                onclick="event.preventDefault();
+                            this.closest('form').submit();">
+            {{ __('Log Out') }}
+        </x-dropdown-link>
+    </form>
 </x-app-layout>
