@@ -4,7 +4,9 @@
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
-
+        <h4 class="text-center text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
+            {{ __('Admin Login Page') }}
+        </h4>
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
