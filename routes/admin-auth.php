@@ -11,7 +11,7 @@ use App\Http\Controllers\Admin\Auth\RegisteredAdminController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('guest:admin')->group(function () {
+Route::prefix('admin')->middleware('guest:admin')->group(function () {
     Route::get('register', [RegisteredAdminController::class, 'create'])->name('register');
     Route::post('register', [RegisteredAdminController::class, 'store']);
 
@@ -24,7 +24,7 @@ Route::middleware('guest:admin')->group(function () {
     Route::post('reset-password', [NewPasswordController::class, 'store'])->name('password.store');
 });
 
-Route::middleware('auth:admin')->group(function () {
+Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::get('verify-email', EmailVerificationPromptController::class)->name('verification.notice');
     Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)->middleware(['signed', 'throttle:6,1'])
         ->name('verification.verify');
