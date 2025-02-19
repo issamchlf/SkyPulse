@@ -16,7 +16,7 @@ class ConfirmablePasswordController extends Controller
      */
     public function show(): View
     {
-        return view('auth.confirm-password');
+        return view('admin.auth.confirm-password');
     }
 
     /**
@@ -24,8 +24,8 @@ class ConfirmablePasswordController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        if (! Auth::guard('web')->validate([
-            'email' => $request->user()->email,
+        if (! Auth::guard('admin')->validate([
+            'email' => $request->admin()->email,
             'password' => $request->password,
         ])) {
             throw ValidationException::withMessages([
@@ -35,6 +35,6 @@ class ConfirmablePasswordController extends Controller
 
         $request->session()->put('auth.password_confirmed_at', time());
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        return redirect()->intended(route('admin.dashboard', absolute: false));
     }
 }
