@@ -11,7 +11,7 @@ class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
-    
+
     protected $guard = 'web';
 
     /**
@@ -46,5 +46,13 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function Flights()
+    {
+        return $this->belongsToMany(Flight::class);
+    }
+    public function Payments()
+    {
+        return $this->belongsTo(Payment::class);
     }
 }
