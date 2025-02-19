@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('planes', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('type');
+            $table->integer('max_seats');
             $table->timestamps();
         });
     }
