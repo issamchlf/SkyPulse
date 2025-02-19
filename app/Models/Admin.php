@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Admin extends Model
 {
     use HasFactory, Notifiable;
+    protected $guard = 'admin';
 
     /**
      * The attributes that are mass assignable.
