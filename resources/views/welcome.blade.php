@@ -13,7 +13,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
 
 
-    <!-- Styles / Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
@@ -170,7 +169,7 @@
 
                     <div class="max-w-7xl mx-auto px-6 py-10">
                         <section>
-                            <h2 class="text-3xl font-bold text-blue-900 font-orbitron">Popular Destination</h2>
+                            <h2 class="text-3xl font-bold text-blue-900 ">Popular Destination</h2>
                             <p class="text-gray-500">Unleash Your Wanderlust With SkyWings</p>
                             <div class="flex gap-4 overflow-x-auto mt-6">
                                 <div class="w-64 bg-blue-100 rounded-lg shadow-lg p-4">
