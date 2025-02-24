@@ -5,11 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>SkyPulse</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+
 
     <!-- Styles / Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -86,22 +88,23 @@
                         class="rounded-md px-4 py-2 text-white ring-1 ring-transparent transition hover:bg-blue-700 focus:outline-none focus-visible:ring-[#FEE715]">
                         Dashboard
                     </a>
-                @else
+                    @else
                     <a href="{{ route('login') }}"
-                        class="rounded-md px-4 py-2 text-white ring-1 ring-transparent transition hover:bg-blue-700 focus:outline-none focus-visible:ring-[#FEE715]">
+                       class="rounded-md px-4 py-2 text-white ring-1 ring-transparent transition hover:bg-blue-700 focus:outline-none focus-visible:ring-[#FEE715] font-orbitron">
                         Log in
                     </a>
-
+                
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}"
-                            class="rounded-md px-4 py-2 text-white ring-1 ring-transparent transition hover:bg-blue-700 focus:outline-none focus-visible:ring-[#FEE715]">
+                           class="rounded-md px-4 py-2 text-white ring-1 ring-transparent transition hover:bg-blue-700 focus:outline-none focus-visible:ring-[#FEE715] font-orbitron">
                             Register
                         </a>
                     @endif
                 @endauth
+                
 
                 <a href="{{ url('/admin/login') }}"
-                    class="rounded-md px-4 py-2 bg-blue-500 text-white ring-1 ring-transparent transition hover:bg-blue-700 focus:outline-none focus-visible:ring-[#FEE715]">
+                    class="rounded-md px-4 py-2 bg-blue-500 text-white ring-1 ring-transparent transition hover:bg-blue-700 focus:outline-none focus-visible:ring-[#FEE715] font-orbitron">
                     Admin
                 </a>
             </nav>
@@ -124,7 +127,7 @@
                             <p class="text-sm uppercase ml-2 text-blue-900 tracking-widest">Elevate Your Travel Journey
                             </p>
                             <h1 class=" text-5xl font-bold text-blue-900">Experience The Magic Of Flight!</h1>
-                            <button class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-700">Book A Trip
+                            <button class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-700 font-orbitron">Book A Trip
                                 Now</button>
                         </div>
                         <div class="w-full md:w-1/2 mt-4 md:mt-0 ml-2">
@@ -167,7 +170,7 @@
 
                     <div class="max-w-7xl mx-auto px-6 py-10">
                         <section>
-                            <h2 class="text-3xl font-bold text-blue-900">Popular Destination</h2>
+                            <h2 class="text-3xl font-bold text-blue-900 font-orbitron">Popular Destination</h2>
                             <p class="text-gray-500">Unleash Your Wanderlust With SkyWings</p>
                             <div class="flex gap-4 overflow-x-auto mt-6">
                                 <div class="w-64 bg-blue-100 rounded-lg shadow-lg p-4">
@@ -206,7 +209,7 @@
                             <div>
                                 <h2 class="text-blue-900 text-4xl font-bold">UNLEASH WANDERLUST WITH SKYWINGS</h2>
                                 <p class="text-gray-500">Explore new places and experience different cultures.</p>
-                                <button class="mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg">Book A Flight
+                                <button class="mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg font-orbitron">Book A Flight
                                     Now</button>
                             </div>
                         </section>
