@@ -12,6 +12,7 @@ export default {
     theme: {
         extend: {
             fontFamily: {
+                orbitron: ['Orbitron', 'sans-serif'],
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
         },
@@ -19,3 +20,4 @@ export default {
 
     plugins: [forms],
 };
+
