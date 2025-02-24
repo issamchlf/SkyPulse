@@ -19,18 +19,64 @@
 <body class="font-sans antialiased bg-blue-200 dark:text-white">
     <header class="flex items-center justify-between bg-gradient-to-r from-blue-500 via-blue-400 to-blue-300 py-4 px-8 relative z-10 shadow-blue-500/50 opacity-85">
         <div class="flex items-center">
-            <svg class="h-12 w-auto text-white lg:h-16" viewBox="0 0 120 80" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <text x="60" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="26"
-                    font-weight="bold" fill="#ffffff">
-                    SkyPulse
-                </text>
-
-                <circle cx="57" cy="36" r="0" fill="none" stroke="#ADD8E6" stroke-width="5">
-                    <animate attributeName="r" values="0;15" dur="2s" repeatCount="indefinite" />
-                    <animate attributeName="opacity" values="1;0" dur="2s" repeatCount="indefinite" />
-                </circle>
-            </svg>
+            <svg width="180" height="50" viewBox="50 9 300 90" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#ffffff" />
+                <stop offset="50%" stop-color="#ffffff" />
+                <stop offset="100%" stop-color="#ffffff" />
+              </linearGradient>
+              
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+              
+              <style>
+                @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+                
+                .title {
+                  font: 600 32px 'Orbitron', sans-serif;
+                  fill: url(#textGradient);
+                  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+                  letter-spacing: 2px;
+                }
+              
+                .pulse {
+                  fill: none;
+                  stroke: url(#textGradient);
+                  stroke-width: 2;
+                  stroke-linecap: round;
+                  filter: url(#glow);
+                  animation: pulse 1.5s ease-in-out infinite;
+                }
+              
+                @keyframes pulse {
+                  0% { stroke-width: 2; opacity: 1; }
+                  50% { stroke-width: 3; opacity: 0.8; }
+                  100% { stroke-width: 2; opacity: 1; }
+                }
+              </style>
+            </defs>
+              
+            <rect width="300" height="100" fill="none" rx="8"/>
+              
+            <text x="50%" y="60%" class="title" text-anchor="middle" dominant-baseline="middle">
+              <animate attributeName="opacity" values="1;0.9;1" dur="2s" repeatCount="indefinite"/>
+              SkyPulse
+            </text>
+              
+            <path class="pulse" d="M30 70 
+                          Q75 50 120 70
+                          Q165 90 210 60
+                          Q255 30 270 70" 
+                  transform="translate(0 10)"/>
+              
+            
+              </svg>
         </div>
 
         @if (Route::has('login'))
