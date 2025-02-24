@@ -18,66 +18,77 @@
 </head>
 
 <body class="font-sans antialiased bg-blue-200 dark:text-white">
-    <header class="flex items-center justify-between bg-gradient-to-r from-blue-500 via-blue-400 to-blue-300 py-4 px-8 relative z-10 shadow-blue-500/50 opacity-85">
+    <header
+        class="flex items-center justify-between bg-gradient-to-r from-blue-500 via-blue-400 to-blue-300 py-4 px-8 relative z-10 shadow-blue-500/50 opacity-85">
         <div class="flex items-center">
             <svg width="180" height="50" viewBox="50 9 300 90" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#ffffff" />
-                <stop offset="50%" stop-color="#ffffff" />
-                <stop offset="100%" stop-color="#ffffff" />
-              </linearGradient>
-              
-              <filter id="glow">
-                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-                <feMerge>
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-              
-              <style>
-                @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
-                
-                .title {
-                  font: 600 32px 'Orbitron', sans-serif;
-                  fill: url(#textGradient);
-                  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-                  letter-spacing: 2px;
-                }
-              
-                .pulse {
-                  fill: none;
-                  stroke: url(#textGradient);
-                  stroke-width: 2;
-                  stroke-linecap: round;
-                  filter: url(#glow);
-                  animation: pulse 1.5s ease-in-out infinite;
-                }
-              
-                @keyframes pulse {
-                  0% { stroke-width: 2; opacity: 1; }
-                  50% { stroke-width: 3; opacity: 0.8; }
-                  100% { stroke-width: 2; opacity: 1; }
-                }
-              </style>
-            </defs>
-              
-            <rect width="300" height="100" fill="none" rx="8"/>
-              
-            <text x="50%" y="60%" class="title" text-anchor="middle" dominant-baseline="middle">
-              <animate attributeName="opacity" values="1;0.9;1" dur="2s" repeatCount="indefinite"/>
-              SkyPulse
-            </text>
-              
-            <path class="pulse" d="M30 70 
+                <defs>
+                    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#ffffff" />
+                        <stop offset="50%" stop-color="#ffffff" />
+                        <stop offset="100%" stop-color="#ffffff" />
+                    </linearGradient>
+
+                    <filter id="glow">
+                        <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+                        <feMerge>
+                            <feMergeNode in="coloredBlur" />
+                            <feMergeNode in="SourceGraphic" />
+                        </feMerge>
+                    </filter>
+
+                    <style>
+                        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+                        .title {
+                            font: 600 32px 'Orbitron', sans-serif;
+                            fill: url(#textGradient);
+                            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+                            letter-spacing: 2px;
+                        }
+
+                        .pulse {
+                            fill: none;
+                            stroke: url(#textGradient);
+                            stroke-width: 2;
+                            stroke-linecap: round;
+                            filter: url(#glow);
+                            animation: pulse 1.5s ease-in-out infinite;
+                        }
+
+                        @keyframes pulse {
+                            0% {
+                                stroke-width: 2;
+                                opacity: 1;
+                            }
+
+                            50% {
+                                stroke-width: 3;
+                                opacity: 0.8;
+                            }
+
+                            100% {
+                                stroke-width: 2;
+                                opacity: 1;
+                            }
+                        }
+                    </style>
+                </defs>
+
+                <rect width="300" height="100" fill="none" rx="8" />
+
+                <text x="50%" y="60%" class="title" text-anchor="middle" dominant-baseline="middle">
+                    <animate attributeName="opacity" values="1;0.9;1" dur="2s" repeatCount="indefinite" />
+                    SkyPulse
+                </text>
+
+                <path class="pulse" d="M30 70
                           Q75 50 120 70
                           Q165 90 210 60
-                          Q255 30 270 70" 
-                  transform="translate(0 10)"/>
-              
-            
-              </svg>
+                          Q255 30 270 70" transform="translate(0 10)" />
+
+
+            </svg>
         </div>
 
         @if (Route::has('login'))
@@ -87,20 +98,20 @@
                         class="rounded-md px-4 py-2 text-white ring-1 ring-transparent transition hover:bg-blue-700 focus:outline-none focus-visible:ring-[#FEE715]">
                         Dashboard
                     </a>
-                    @else
+                @else
                     <a href="{{ route('login') }}"
-                       class="rounded-md px-4 py-2 text-white ring-1 ring-transparent transition hover:bg-blue-700 focus:outline-none focus-visible:ring-[#FEE715] font-orbitron">
+                        class="rounded-md px-4 py-2 text-white ring-1 ring-transparent transition hover:bg-blue-700 focus:outline-none focus-visible:ring-[#FEE715] font-orbitron">
                         Log in
                     </a>
-                
+
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}"
-                           class="rounded-md px-4 py-2 text-white ring-1 ring-transparent transition hover:bg-blue-700 focus:outline-none focus-visible:ring-[#FEE715] font-orbitron">
+                            class="rounded-md px-4 py-2 text-white ring-1 ring-transparent transition hover:bg-blue-700 focus:outline-none focus-visible:ring-[#FEE715] font-orbitron">
                             Register
                         </a>
                     @endif
                 @endauth
-                
+
 
                 <a href="{{ url('/admin/login') }}"
                     class="rounded-md px-4 py-2 bg-blue-500 text-white ring-1 ring-transparent transition hover:bg-blue-700 focus:outline-none focus-visible:ring-[#FEE715] font-orbitron">
@@ -111,7 +122,7 @@
     </header>
 
 
-    <div class="h-8"></div> 
+    <div class="h-8"></div>
 
     <div class="bg-gray-50 text-black/50 dark:bg-blue-200 dark:text-white/50">
         <img id="background" class="absolute inset-0 w-full h-full object-cover blur-sm"
@@ -126,7 +137,9 @@
                             <p class="text-sm uppercase ml-2 text-blue-900 tracking-widest">Elevate Your Travel Journey
                             </p>
                             <h1 class=" text-5xl font-bold text-blue-900">Experience The Magic Of Flight!</h1>
-                            <button class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-700 font-orbitron">Book A Trip
+                            <button
+                                class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-700 font-orbitron">Book
+                                A Trip
                                 Now</button>
                         </div>
                         <div class="w-full md:w-1/2 mt-4 md:mt-0 ml-2">
@@ -169,49 +182,48 @@
 
                     <div class="max-w-7xl mx-auto px-6 py-10">
                         <section>
-                            <h2 class="text-3xl font-bold text-blue-900 ">Popular Destination</h2>
+                            <h2 class="text-3xl font-bold text-blue-900">Popular Destination</h2>
                             <p class="text-gray-500">Unleash Your Wanderlust With SkyWings</p>
-                            <div class="flex gap-4 overflow-x-auto mt-6">
-                                <div class="w-64 bg-blue-100 rounded-lg shadow-lg p-4">
-                                    <img src="{{ asset('img/chawen2.JPG') }}" class="rounded-lg w-full"
-                                        alt="Destination">
-                                    <h3 class="text-blue-900 font-semibold mt-2">The Blue City</h3>
-                                    <p class="text-gray-500 text-sm">Chefchaouen, Morocco</p>
-                                </div>
-                                <div class="w-64 bg-blue-100 rounded-lg shadow-lg p-4">
-                                    <img src="{{ asset('img/dubai.jpg') }}" class="rounded-lg w-full" alt="Destination">
-                                    <h3 class="text-blue-900 font-semibold mt-2">Khalifa Tour</h3>
-                                    <p class="text-gray-500 text-sm">Dubai, Emarates</p>
-                                </div>
-                                <div class="w-64 bg-blue-100 rounded-lg shadow-lg p-4">
-                                    <img src="{{ asset('img/sahara.png') }}" class="rounded-lg w-full"
-                                        alt="Destination">
-                                    <h3 class="text-blue-900 font-semibold mt-2">Grand Sahara</h3>
-                                    <p class="text-gray-500 text-sm">Merzouga, Morocco</p>
-                                </div>
-                                <div class="w-64 bg-blue-100 rounded-lg shadow-lg p-4">
-                                    <img src="{{ asset('img/thailand.jpg') }}" class="rounded-lg w-full"
-                                        alt="Destination">
-                                    <h3 class="text-blue-900 font-semibold mt-2">Toub Kaak Beach</h3>
-                                    <p class="text-gray-500 text-sm">Krabi, Thailand</p>
-                                </div>
-                                <div class="w-64 bg-blue-100 rounded-lg shadow-lg p-4">
-                                    <img src="{{ asset('img/barcelona.jpg') }}" class="rounded-lg w-full"
-                                        alt="Destination">
-                                    <h3 class="text-blue-900 font-semibold mt-2">Sagrada Família</h3>
-                                    <p class="text-gray-500 text-sm">Barcelona, Spain</p>
-                                </div>
+                            <div class="flex gap-4 overflow-x-auto mt-6 snap-x snap-mandatory">
+                              <div class="w-64 bg-blue-300 rounded-lg shadow-lg p-4 snap-start">
+                                <img src="{{ asset('img/chawen2.JPG') }}" class="rounded-lg w-full" alt="Destination">
+                                <h3 class="text-blue-900 font-semibold mt-2">The Blue City</h3>
+                                <p class="text-gray-500 text-sm">Chefchaouen, Morocco</p>
+                              </div>
+                              <div class="w-64 bg-blue-300 rounded-lg shadow-lg p-4 snap-start">
+                                <img src="{{ asset('img/dubai.jpg') }}" class="rounded-lg w-full" alt="Destination">
+                                <h3 class="text-blue-900 font-semibold mt-2">Khalifa Tour</h3>
+                                <p class="text-gray-500 text-sm">Dubai, Emarates</p>
+                              </div>
+                              <div class="w-64 bg-blue-300 rounded-lg shadow-lg p-4 snap-start">
+                                <img src="{{ asset('img/sahara.png') }}" class="rounded-lg w-full" alt="Destination">
+                                <h3 class="text-blue-900 font-semibold mt-2">Grand Sahara</h3>
+                                <p class="text-gray-500 text-sm">Merzouga, Morocco</p>
+                              </div>
+                              <div class="w-64 bg-blue-300 rounded-lg shadow-lg p-4 snap-start">
+                                <img src="{{ asset('img/thailand.jpg') }}" class="rounded-lg w-full" alt="Destination">
+                                <h3 class="text-blue-900 font-semibold mt-2">Toub Kaak Beach</h3>
+                                <p class="text-gray-500 text-sm">Krabi, Thailand</p>
+                              </div>
+                              <div class="w-64 bg-blue-300 rounded-lg shadow-lg p-4 snap-start">
+                                <img src="{{ asset('img/barcelona.jpg') }}" class="rounded-lg w-full" alt="Destination">
+                                <h3 class="text-blue-900 font-semibold mt-2">Sagrada Família</h3>
+                                <p class="text-gray-500 text-sm">Barcelona, Spain</p>
+                              </div>
                             </div>
-                        </section>
-                        <section class="mt-16 flex flex-col md:flex-row items-center gap-6">
-                            <img src="{{ asset('img/seat.jpg') }}" class="rounded-lg shadow-lg" alt="Promo">
+                          </section>
+                          
+                          <section class="mt-16 flex flex-col md:flex-row items-center gap-6">
+                            <img src="{{ asset('img/seat.jpg') }}" class="rounded-lg shadow-lg w-full md:w-auto" alt="Promo">
                             <div>
-                                <h2 class="text-blue-900 text-4xl font-bold">UNLEASH WANDERLUST WITH SKYWINGS</h2>
-                                <p class="text-gray-500">Explore new places and experience different cultures.</p>
-                                <button class="mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg font-orbitron">Book A Flight
-                                    Now</button>
+                              <h2 class="text-blue-900 text-4xl font-bold">UNLEASH WANDERLUST WITH SKYWINGS</h2>
+                              <p class="text-gray-500">Explore new places and experience different cultures.</p>
+                              <button class="mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg font-orbitron">
+                                Book A Flight Now
+                              </button>
                             </div>
-                        </section>
+                          </section>
+                          
                     </div>
 
                 </main>
