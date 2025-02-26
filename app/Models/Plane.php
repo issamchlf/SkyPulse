@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Plane extends Model
 {
     use HasFactory;
-    protected $table = 'airplanes';
+    protected $table = 'planes';
     protected $fillable = ['name', 'type', 'max_seats'];
     
     public function Flights()
