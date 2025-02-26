@@ -24,7 +24,7 @@ Route::prefix('admin')->middleware('guest:admin')->group(function () {
     Route::post('reset-password', [NewPasswordController::class, 'store'])->name('admin.password.store');
 });
 
-Route::prefix('admin')->middleware('auth:admin')->group(function () {
+Route::prefix('admin')->middleware('auth:admin', 'is_admin:admin')->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');

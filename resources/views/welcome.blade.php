@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@php
+    $supportedLocales = ['en', 'es', 'fr', 'de']; // Add your supported locales here
+    $locale = str_replace('_', '-', app()->getLocale());
+    $lang = in_array($locale, $supportedLocales) ? $locale : 'en';
+@endphp
+<html lang="{{ $lang }}">
 
 <head>
     <meta charset="utf-8">
