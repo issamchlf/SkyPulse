@@ -10,7 +10,7 @@ Route::get('/', function () {
 
 Route::get('/page', function () {
     return view('page');
-})->middleware( 'auth', 'is_admin:admin');
+})->middleware( 'auth', 'is_admin');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
