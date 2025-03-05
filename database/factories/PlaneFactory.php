@@ -20,6 +20,7 @@ class PlaneFactory extends Factory
             'name' => $this->faker->name,
             'type' => $this->faker->word,
             'max_seats' => $this->faker->randomNumber(),
+            'picture' => $this->faker->imageUrl(640, 480, 'airplane', true, 'Faker'),
         ];
     }
 }
