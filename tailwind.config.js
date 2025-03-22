@@ -22,6 +22,9 @@ export default {
                 'deep-blue': '#004089',
                 'navy-blue': '#073264',
             },
+            transitionProperty: {
+                'colors': 'background-color, border-color, color',
+            },
         },
     },
 
