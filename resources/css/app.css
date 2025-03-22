@@ -1,3 +1,60 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: "Orbitron";
+    src: url("/fonts/orbitron.woff2") format("woff2");
+}
+
+.font-orbitron {
+    font-family: "Orbitron", sans-serif;
+}
+
+.font-orbitron-bold {
+    font-family: "Orbitron", sans-serif;
+    font-weight: 700;
+}
+
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.transition-colors {
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap");
+.title {
+    font: 600 32px "Orbitron", sans-serif;
+    fill: url(#textGradient);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: 2px;
+}
+.pulse {
+    fill: none;
+    stroke: url(#textGradient);
+    stroke-width: 2;
+    stroke-linecap: round;
+    filter: url(#glow);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+@keyframes pulse {
+    0% {
+        stroke-width: 2;
+        opacity: 1;
+    }
+    50% {
+        stroke-width: 3;
+        opacity: 0.8;
+    }
+    100% {
+        stroke-width: 2;
+        opacity: 1;
+    }
+}
