@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\flight;
+use App\Models\Flight;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -26,7 +26,10 @@ class FlightController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created flight resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -43,8 +46,8 @@ class FlightController extends Controller
         
         ]);
         
-        $flight = flight::create($validated);
-        return response()->json($flight);
+        $flight = Flight::create($validated);
+        return response()->json($flight, 201);
     }
 
     /**

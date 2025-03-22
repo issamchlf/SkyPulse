@@ -11,7 +11,7 @@ Route::get('/user', function (Request $request) {
 
 route::get('/flights', [FlightController::class, 'index'])->name('apiindex.flight');   
 route::get('/flights/{id}', [FlightController::class, 'show'])->name('apishow.flight');
-route::post('/flights', [FlightController::class, 'store'])->name('apistore.flight');
+Route::post('/flights', [FlightController::class, 'store'])->name('apistore.flight');
 route::put('/flights/{id}', [FlightController::class, 'update'])->name('apiupdate.flight');
 route::delete('/flights/{id}', [FlightController::class, 'destroy'])->name('apidelete.flight');
 
