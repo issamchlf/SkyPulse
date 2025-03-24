@@ -33,7 +33,8 @@ class PlaneController extends Controller
         $validated = $request->validate([
             'name'     => 'required',
             'type'     => 'required',
-            'max_seats'=> 'required'
+            'max_seats'=> 'required',
+            'picture'  => 'required'
         
         ]);
         
@@ -72,7 +73,8 @@ class PlaneController extends Controller
         $validated = $request->validate([
             'name'     => 'required',
             'type'     => 'required',
-            'max_seats'=> 'required'
+            'max_seats'=> 'required',
+            'picture'  => 'required'
         ]);
 
         $airplane->update(array_filter($validated));

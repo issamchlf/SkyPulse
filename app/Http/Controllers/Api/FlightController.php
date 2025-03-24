@@ -41,6 +41,7 @@ class FlightController extends Controller
             'departure_time'   => 'required',
             'arrival_time'     => 'required',
             'price'            => 'required',
+            'picture'          => 'required',
             'available_seats'  => 'required',
             'status'           => 'required'
         
@@ -86,6 +87,7 @@ class FlightController extends Controller
             'departure_time'   => 'required',
             'arrival_time'     => 'required',
             'price'            => 'required',
+            'picture'          => 'required',
             'available_seats'  => 'required',
             'status'           => 'required'
         
