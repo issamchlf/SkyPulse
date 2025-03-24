@@ -73,23 +73,21 @@ class FlightController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $flight = flight::findOrFail($id);
+        $flight = flight::find($id);
 
         if (!$flight) {
             return response()->json(['message' => 'Flight not found'], 404);
         }
 
         $validated = $request->validate([
-            'airplane_id'      => 'required',
+            'plane_id'      => 'required',
             'flight_number'    => 'required',
             'departure_airport' => 'required',
             'arrival_airport'  => 'required',
             'departure_time'   => 'required',
             'arrival_time'     => 'required',
             'price'            => 'required',
-            'picture'          => 'required',
-            'available_seats'  => 'required',
-            'status'           => 'required'
+            'status'           => 'required',
         
         ]);
         $flight->update(array_filter($validated));
