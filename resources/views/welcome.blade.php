@@ -177,7 +177,7 @@
             <div class="space-y-3">
                 <h4 class="text-lg font-orbitron text-white mb-2">Explore</h4>
                 <ul class="space-y-2">
-                    <li><a href="#" class="text-blue-100 hover:text-white transition-colors">Destinations</a></li>
+                    <li><a href="{{ route('flights') }}" class="text-blue-100 hover:text-white transition-colors">Destinations</a></li>
                     <li><a href="#" class="text-blue-100 hover:text-white transition-colors">Special Offers</a></li>
                     <li><a href="#" class="text-blue-100 hover:text-white transition-colors">Travel Guides</a></li>
                     <li><a href="#" class="text-blue-100 hover:text-white transition-colors">Loyalty Program</a></li>
