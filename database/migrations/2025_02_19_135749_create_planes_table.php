@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('type');
             $table->integer('max_seats');
-            $table->string('picture')->nullable()->change();
+            $table->string('picture')->nullable();
             $table->timestamps();
         });
     }
