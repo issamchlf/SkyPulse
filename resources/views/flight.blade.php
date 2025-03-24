@@ -54,10 +54,10 @@
                                 {{ $flight->departure_airport }} → {{ $flight->arrival_airport }}
                             </h4>
                             <p class="text-sm text-blue-gray">
-                                • {{ $flight->available_seats }} seats available
+                                • {{ $flight->plane->max_seats }} seats available
                             </p>
                         </div>
-                        <img src="{{ asset('img/placeholder.png') }}" class="w-16 h-16 rounded-full" alt="{{ $flight->flight_number }}" />
+                        <img src="{{ $flight->plane->picture }}" class="w-16 h-16 rounded-full" alt="{{ $flight->flight_number }}" />
                     </div>
                     <div class="flex items-center justify-between mb-6">
                         <div class="text-center">
