@@ -47,7 +47,7 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    public function Flights()
+    public function flights()
     {
         return $this->belongsToMany(Flight::class);
     }
