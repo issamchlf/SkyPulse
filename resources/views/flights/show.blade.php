@@ -1,15 +1,10 @@
 <x-app-layout>
-
-
     <div class="relative bg-gradient-to-b from-sky-100 to-blue-50 min-h-screen py-12 overflow-hidden">
-        <!-- Decorative elements -->
         <div class="absolute -top-20 -right-20 w-72 h-72 bg-blue-200 rounded-full opacity-20 mix-blend-multiply"></div>
         <div class="absolute -bottom-40 -left-20 w-96 h-96 bg-sky-200 rounded-full opacity-20 mix-blend-multiply"></div>
 
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <!-- Flight Card -->
             <div class="bg-white rounded-3xl p-8 shadow-2xl transform transition-all hover:shadow-3xl">
-                <!-- Flight Header -->
                 <div class="flex items-center justify-between mb-8 border-b-2 border-blue-50 pb-6">
                     <div>
                         <h1 class="text-4xl font-extrabold text-gray-900">
@@ -24,9 +19,7 @@
                     <img src="{{ $flight->plane->picture }}" class="w-24 h-24 rounded-full border-4 border-white shadow-lg" alt="Aircraft">
                 </div>
 
-                <!-- Flight Details Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                    <!-- Departure Card -->
                     <div class="bg-blue-50 p-6 rounded-xl">
                         <div class="flex items-center gap-3 mb-3">
                             <div class="bg-blue-500 p-3 rounded-lg">
@@ -44,7 +37,6 @@
                         </p>
                     </div>
 
-                    <!-- Arrival Card -->
                     <div class="bg-blue-50 p-6 rounded-xl">
                         <div class="flex items-center gap-3 mb-3">
                             <div class="bg-green-500 p-3 rounded-lg">
@@ -63,7 +55,6 @@
                     </div>
                 </div>
 
-                <!-- Pricing Section -->
                 <div class="bg-blue-900 text-white p-6 rounded-xl mb-8 transform transition hover:scale-[1.01]">
                     <div class="flex items-center justify-between">
                         <div>
@@ -77,7 +68,6 @@
                     </div>
                 </div>
 
-                <!-- Reservation Form -->
                 <form action="{{ route('flights.book', $flight->id) }}" method="POST" class="space-y-6">
                     @csrf
                     <div class="bg-blue-50 p-6 rounded-xl">
@@ -124,6 +114,5 @@
         </div>
     </div>
 
-    <!-- Include Alpine.js for dynamic price calculation -->
     <script src="https://unpkg.com/alpinejs" defer></script>
 </x-app-layout>

@@ -145,7 +145,7 @@ class FlightController extends Controller
 
         $flight->decrement('available_seats', $request->seats);
 
-        return redirect()->route('flights')->with('success', 'Flight booked successfully!');
+        return redirect()->route('dashboard')->with('success', 'Flight booked successfully!');
     }
 
     public function debook(Flight $flight)
