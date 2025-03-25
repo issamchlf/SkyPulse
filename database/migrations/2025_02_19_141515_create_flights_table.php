@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('departure_airport');
             $table->string('arrival_airport');
             $table->dateTime('departure_time');
+            $table->integer('available_seats');
             $table->dateTime('arrival_time');
             $table->decimal('price', 10, 2);
             $table->boolean('status')->default(true);
