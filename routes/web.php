@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Reservation;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FlightController;
 use App\Http\Controllers\ProfileController;
@@ -14,8 +15,8 @@ Route::get('/page', function () {
 })->middleware('auth', 'is_admin');
 
 Route::get('/dashboard', function () {
-    $recentBookings = Reservation::with('flight')->latest()->take(5)->get();
-    $totalFlights = Reservation::count();
+    $recentBookings = Reservation::with('flight')->where('user_id', Auth::user()->id)->latest()->take(5)->get();
+    $totalFlights = Reservation::where('user_id', Auth::user()->id)->count();
     $milesFlown = Reservation::with('flight')->get()->sum(fn($r) => $r->flight->miles ?? 0);
     $rewardPoints = Reservation::with('flight')->get()->sum(fn($r) => $r->flight->reward_points ?? 0);
     $countriesVisited = Reservation::with('flight')
