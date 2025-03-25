@@ -53,12 +53,12 @@
             </button>
             <nav id="menu" class="hidden md:flex md:space-x-4 lg:space-x-6 absolute right-0 mt-2 md:mt-0 md:relative bg-blue-600 md:bg-transparent w-48 md:w-auto shadow-lg md:shadow-none" role="navigation">
                 @auth
-                    <a href="{{ url('/dashboard') }}" class="block md:inline-block rounded-md px-4 py-2 text-white hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#FEE715] font-orbitron">Dashboard</a>
+                    <a href="{{ url('/dashboard') }}" class="block md:inline-block rounded-md px-4 py-2 text-white hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#0f44be] font-orbitron">Dashboard</a>
                 @else
                     <button class="md:hidden absolute top-2 right-2 text-white hover:text-blue-200" aria-label="Close menu" onclick="toggleMenu()">✕</button>
-                    <a href="{{ route('login') }}" class="block md:inline-block rounded-md px-4 py-2 text-white hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#FEE715] font-orbitron-bold">Log in</a>
+                    <a href="{{ route('login') }}" class="block md:inline-block rounded-md px-4 py-2 text-white hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#0f44be] font-orbitron-bold">Log in</a>
                     @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="block md:inline-block rounded-md px-4 py-2 text-white hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#FEE715] font-orbitron-bold">Register</a>
+                        <a href="{{ route('register') }}" class="block md:inline-block rounded-md px-4 py-2 text-white hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#0f44be] font-orbitron-bold">Register</a>
                     @endif
                     <a href="{{ url('/admin/login') }}" class="block md:inline-block rounded-md px-4 py-2 bg-[#50afff] text-gray-900 hover:bg-[#0f44be] transition-colors duration-200 font-orbitron-bold border-2 border-[#50afff] hover:border-[#0f44be] focus:outline-none focus:ring-2 focus:ring-white">Admin</a>
                 @endauth
