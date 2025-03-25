@@ -34,14 +34,13 @@ class FlightController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'airplane_id'      => 'required',
+            'plane_id'      => 'required',
             'flight_number'    => 'required',
             'departure_airport' => 'required',
             'arrival_airport'  => 'required',
             'departure_time'   => 'required',
             'arrival_time'     => 'required',
             'price'            => 'required',
-            'picture'          => 'required',
             'available_seats'  => 'required',
             'status'           => 'required'
         
@@ -88,6 +87,7 @@ class FlightController extends Controller
             'arrival_time'     => 'required',
             'price'            => 'required',
             'status'           => 'required',
+            'available_seats'  => 'required'
         
         ]);
         $flight->update(array_filter($validated));
