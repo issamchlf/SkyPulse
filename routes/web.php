@@ -17,7 +17,9 @@ Route::get('/page', function () {
 Route::get('/dashboard', function () {
     $recentBookings = Reservation::with('flight')->where('user_id', Auth::user()->id)->latest()->take(5)->get();
     $totalFlights = Reservation::where('user_id', Auth::user()->id)->count();
-    $milesFlown = Reservation::with('flight')->get()->sum(fn($r) => $r->flight->miles ?? 0)
+    $milesFlown = Reservation::with('flight')->get()->sum(fn($r) => $r->flight->miles ?? 0);
+    $rewardPoints = Reservation::with('flight')->get()->sum(fn($r) => $r->flight->reward_points ?? 0);
+    $countriesVisited = Reservation::with('flight')
         ->get()
         ->pluck('flight.arrival_country')
         ->unique()
@@ -26,7 +28,7 @@ Route::get('/dashboard', function () {
     return view('dashboard', compact('recentBookings', 'totalFlights', 'milesFlown', 'rewardPoints', 'countriesVisited'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/flights', [FlightController::class, 'index'])->name('flights')->middleware('auth');
+Route::get('/flights', [FlightController::class, 'index'])->name('flights');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
