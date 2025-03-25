@@ -6,6 +6,7 @@ use App\Models\Flight;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\Paginator;
 
 class FlightController extends Controller
 {
@@ -49,7 +50,8 @@ class FlightController extends Controller
             $query->where('trip_type', $request->trip_type);
         }
 
-        $flights = $query->paginate(10)->withQueryString();
+        $flights = $query->paginate(10);
+        $flights->appends($request->query());
 
         return view('flight', compact('flights'));
     }
