@@ -69,20 +69,7 @@
                 <h2 class="text-xl font-bold text-gray-800 mb-4">Filter Flights</h2>
                 
                 <form method="GET" action="" class="space-y-6">
-                    <div class="space-y-3">
-                        <h3 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">Airlines</h3>
-                        <div class="space-y-2">
-                            @foreach(['American Airlines', 'Delta', 'Frontier', 'Spirit Airlines', 'United Airlines'] as $airline)
-                                <label class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded-lg transition-colors">
-                                    <input type="checkbox" name="airlines[]" value="{{ $airline }}" 
-                                           class="form-checkbox h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500" 
-                                           {{ in_array($airline, (array)request('airlines')) ? 'checked' : '' }} />
-                                    <span class="text-gray-700">{{ $airline }}</span>
-                                </label>
-                            @endforeach
-                        </div>
-                    </div>
-
+ 
                     <div class="space-y-3">
                         <h3 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">Stops</h3>
                         <select name="stops" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
