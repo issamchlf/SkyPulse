@@ -22,7 +22,7 @@
                     <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border border-gray-100">
                         <div class="flex-1">
                             <div class="flex items-center gap-4">
-                                <img src="{{ $flight->plane->picture }}" alt="Airline Logo" class="w-12 h-12 rounded-lg border-2 border-white shadow-sm" />
+                                <img src="{{ asset('img/' . $flight->plane->picture) }}" alt="Airline Logo" class="w-12 h-12 rounded-lg border-2 border-white shadow-sm" />
                                 <div>
                                     <h3 class="text-lg font-semibold text-gray-800">
                                         {{ $departure->format('h:i A') }} – {{ $arrival->format('h:i A') }}

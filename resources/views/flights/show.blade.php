@@ -16,7 +16,7 @@
                             {{ $flight->plane->name }} • {{ $flight->plane->capacity }} seats
                         </p>
                     </div>
-                    <img src="{{ $flight->plane->picture }}" class="w-24 h-24 rounded-full border-4 border-white shadow-lg" alt="Aircraft">
+                    <img src="{{ asset('img/' . $flight->plane->picture) }}" class="w-24 h-24 rounded-full border-4 border-white shadow-lg" alt="Aircraft">
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
