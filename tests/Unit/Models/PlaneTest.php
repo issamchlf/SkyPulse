@@ -11,8 +11,8 @@ class PlaneTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
-    public function it_has_required_attributes()
+    
+    public function testIt_has_required_attributes()
     {
         $plane = Plane::factory()->create([
             'name' => 'Boeing 737',
@@ -27,8 +27,7 @@ class PlaneTest extends TestCase
         $this->assertEquals('planes/boeing-737.jpg', $plane->picture);
     }
 
-    /** @test */
-    public function it_can_be_created_with_valid_data()
+    public function testIt_can_be_created_with_valid_data()
     {
         $plane = Plane::create([
             'name' => 'Airbus A320',
@@ -46,8 +45,7 @@ class PlaneTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_can_have_multiple_flights()
+    public function testIt_can_have_multiple_flights()
     {
         $plane = Plane::factory()->create();
         $flights = Flight::factory()->count(3)->create(['plane_id' => $plane->id]);
@@ -57,8 +55,7 @@ class PlaneTest extends TestCase
         $this->assertEquals($plane->id, $plane->Flights->first()->plane_id);
     }
 
-    /** @test */
-    public function it_can_update_its_attributes()
+    public function testIt_can_update_its_attributes()
     {
         $plane = Plane::factory()->create([
             'name' => 'Boeing 737',
@@ -74,8 +71,7 @@ class PlaneTest extends TestCase
         $this->assertEquals(200, $plane->fresh()->max_seats);
     }
 
-    /** @test */
-    public function it_can_be_deleted()
+    public function testIt_can_be_deleted()
     {
         $plane = Plane::factory()->create();
         
@@ -86,8 +82,7 @@ class PlaneTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_can_have_null_picture()
+    public function testIt_can_have_null_picture()
     {
         $plane = Plane::factory()->create([
             'picture' => null
@@ -96,8 +91,7 @@ class PlaneTest extends TestCase
         $this->assertNull($plane->picture);
     }
 
-    /** @test */
-    public function it_can_be_created_without_picture()
+    public function testIt_can_be_created_without_picture()
     {
         $plane = Plane::create([
             'name' => 'Embraer E190',
