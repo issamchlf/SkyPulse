@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\plane;
+use App\Models\Plane;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -13,7 +13,7 @@ class PlaneController extends Controller
      */
     public function index()
     {
-        $planes = plane::all();
+        $planes = Plane::all();
         return response()->json($planes);
     }
 
@@ -31,15 +31,14 @@ class PlaneController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name'     => 'required',
-            'type'     => 'required',
-            'max_seats'=> 'required',
-            'picture'  => 'required'
-        
+            'name' => 'required|string',
+            'type' => 'required|string',
+            'max_seats' => 'required|integer|min:1',
+            'picture' => 'required|url'
         ]);
-        
-        $airplane = plane::create($validated);
-        return response()->json($airplane);
+
+        $plane = Plane::create($validated);
+        return response()->json($plane, 200);
     }
 
     /**
@@ -47,8 +46,8 @@ class PlaneController extends Controller
      */
     public function show(string $id)
     {
-        $airplane = plane::findOrFail($id);
-        return response()->json($airplane);
+        $plane = Plane::findOrFail($id);
+        return response()->json($plane);
     }
 
     /**
@@ -64,22 +63,17 @@ class PlaneController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $airplane = plane::findOrFail($id);
-
-        if (!$airplane) {
-            return response()->json(['message' => 'Airplane not found'], 404);
-        }
+        $plane = Plane::findOrFail($id);
 
         $validated = $request->validate([
-            'name'     => 'required',
-            'type'     => 'required',
-            'max_seats'=> 'required',
-            'picture'  => 'required'
+            'name' => 'sometimes|string',
+            'type' => 'sometimes|string',
+            'max_seats' => 'sometimes|integer|min:1',
+            'picture' => 'sometimes|url'
         ]);
 
-        $airplane->update(array_filter($validated));
-        return response()->json($airplane, 200);
-
+        $plane->update($validated);
+        return response()->json($plane, 200);
     }
 
     /**
@@ -87,7 +81,8 @@ class PlaneController extends Controller
      */
     public function destroy(string $id)
     {
-        $airplane = plane::findOrFail($id);  
-        $airplane->delete();
+        $plane = Plane::findOrFail($id);
+        $plane->delete();
+        return response()->json(['message' => 'Plane deleted successfully'], 200);
     }
 }
