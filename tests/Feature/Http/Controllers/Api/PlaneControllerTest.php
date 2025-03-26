@@ -11,8 +11,7 @@ class PlaneControllerTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
-    /** @test */
-    public function it_can_list_all_planes()
+    public function testIt_can_list_all_planes()
     {
         $planes = Plane::factory(3)->create();
 
@@ -33,8 +32,7 @@ class PlaneControllerTest extends TestCase
             ]);
     }
 
-    /** @test */
-    public function it_can_create_a_new_plane()
+    public function testIt_can_create_a_new_plane()
     {
         $planeData = [
             'name' => $this->faker->word,
@@ -62,8 +60,7 @@ class PlaneControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_validates_required_fields_for_plane_creation()
+    public function testIt_validates_required_fields_for_plane_creation()
     {
         $response = $this->postJson('/api/planes', []);
 
@@ -76,8 +73,7 @@ class PlaneControllerTest extends TestCase
             ]);
     }
 
-    /** @test */
-    public function it_can_show_a_specific_plane()
+    public function testIt_can_show_a_specific_plane()
     {
         $plane = Plane::factory()->create();
 
@@ -95,16 +91,14 @@ class PlaneControllerTest extends TestCase
             ]);
     }
 
-    /** @test */
-    public function it_returns_404_for_non_existent_plane()
+    public function testIt_returns_404_for_non_existent_plane()
     {
         $response = $this->getJson('/api/planes/99999');
 
         $response->assertStatus(404);
     }
 
-    /** @test */
-    public function it_can_update_a_plane()
+    public function testIt_can_update_a_plane()
     {
         $plane = Plane::factory()->create();
         $updateData = [
@@ -127,8 +121,7 @@ class PlaneControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_can_delete_a_plane()
+    public function testIt_can_delete_a_plane()
     {
         $plane = Plane::factory()->create();
 
@@ -141,8 +134,7 @@ class PlaneControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_validates_max_seats_is_numeric()
+    public function testIt_validates_max_seats_is_numeric()
     {
         $planeData = [
             'name' => $this->faker->word,

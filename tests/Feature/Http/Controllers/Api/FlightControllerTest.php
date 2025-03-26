@@ -13,8 +13,7 @@ class FlightControllerTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
-    /** @test */
-    public function it_can_list_all_flights()
+    public function testIt_can_list_all_flights()
     {
         $flights = Flight::factory(3)->create();
 
@@ -40,8 +39,7 @@ class FlightControllerTest extends TestCase
             ]);
     }
 
-    /** @test */
-    public function it_can_create_a_new_flight()
+    public function testIt_can_create_a_new_flight()
     {
         $plane = Plane::factory()->create();
         $departureTime = Carbon::now()->addDays(1)->format('Y-m-d H:i:s');
@@ -83,8 +81,7 @@ class FlightControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_validates_required_fields_for_flight_creation()
+    public function testIt_validates_required_fields_for_flight_creation()
     {
         $response = $this->postJson('/api/flights', []);
 
@@ -102,8 +99,7 @@ class FlightControllerTest extends TestCase
             ]);
     }
 
-    /** @test */
-    public function it_can_show_a_specific_flight()
+    public function testIt_can_show_a_specific_flight()
     {
         $flight = Flight::factory()->create();
 
@@ -126,16 +122,14 @@ class FlightControllerTest extends TestCase
             ]);
     }
 
-    /** @test */
-    public function it_returns_404_for_non_existent_flight()
+    public function testIt_returns_404_for_non_existent_flight()
     {
         $response = $this->getJson('/api/flights/99999');
 
         $response->assertStatus(404);
     }
 
-    /** @test */
-    public function it_can_update_a_flight()
+    public function testIt_can_update_a_flight()
     {
         $flight = Flight::factory()->create();
         $updateData = [
@@ -158,8 +152,7 @@ class FlightControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_can_delete_a_flight()
+    public function testIt_can_delete_a_flight()
     {
         $flight = Flight::factory()->create();
 
