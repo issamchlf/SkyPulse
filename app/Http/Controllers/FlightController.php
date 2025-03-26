@@ -65,19 +65,22 @@ class FlightController extends Controller
 
     public function store(Request $request)
     {
-        $flight = Flight::create([
-            'airplane_id'      => $request->airplane_id,
-            'flight_number'    => $request->flight_number,    
-            'departure_airport' => $request->departure_airport,
-            'arrival_airport'  => $request->arrival_airport,
-            'departure_time'   => $request->departure_time,
-            'arrival_time'     => $request->arrival_time,
-            'price'            => $request->price,
-            'available_seats'  => $request->available_seats,
-            'status'           => $request->status
+        $validated = $request->validate([
+            'plane_id' => 'required',
+            'flight_number' => 'required',
+            'departure_airport' => 'required',
+            'arrival_airport' => 'required',
+            'departure_time' => 'required',
+            'arrival_time' => 'required',
+            'available_seats' => 'required',
+            'price' => 'required',
+            'status' => 'required'
         ]);
-        $flight->save();
-        return redirect()->route('flight.index');
+
+        Flight::create($validated);
+
+        return redirect()->back()
+            ->with('success', 'Flight created successfully! Redirecting to dashboard...');
     }
 
     public function show($id)

@@ -1,15 +1,16 @@
 <?php
 
-use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
-use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
-use App\Http\Controllers\Admin\Auth\EmailVerificationPromptController;
-use App\Http\Controllers\Admin\Auth\NewPasswordController;
-use App\Http\Controllers\Admin\Auth\PasswordController;
-use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
-use App\Http\Controllers\Admin\Auth\RegisteredAdminController;
-use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FlightController;
+use App\Http\Controllers\Admin\Auth\PasswordController;
+use App\Http\Controllers\Admin\Auth\NewPasswordController;
+use App\Http\Controllers\Admin\Auth\VerifyEmailController;
+use App\Http\Controllers\Admin\Auth\RegisteredAdminController;
+use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
+use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Admin\Auth\EmailVerificationPromptController;
+use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
 
 Route::prefix('admin')->middleware('guest:admin')->group(function () {
     Route::get('register', [RegisteredAdminController::class, 'create'])->name('admin.register');
@@ -41,4 +42,5 @@ Route::prefix('admin')->middleware('auth:admin', 'is_admin:admin')->group(functi
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('adminlogout');
+    Route::get('/flights/create', [FlightController::class, 'create'])->name('admin.flights.create');
 });
