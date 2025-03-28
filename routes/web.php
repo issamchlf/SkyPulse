@@ -38,9 +38,9 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 require __DIR__.'/admin-auth.php';
-
 Route::get('/flights/{id}', [FlightController::class, 'show'])->name('flights.show')->middleware('auth');
 Route::post('/flights', [FlightController::class, 'store'])->name('flights.store')->middleware('auth');
 Route::post('/flights/{flight}/book', [FlightController::class, 'book'])->name('flights.book')->middleware('auth');
 
 Route::post('/flights', [FlightController::class, 'store'])->name('store.flight');
+
