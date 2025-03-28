@@ -9,7 +9,7 @@ class Plane extends Model
 {
     use HasFactory;
     protected $table = 'planes';
-    protected $fillable = ['name', 'type', 'max_seats'];
+    protected $fillable = ['name', 'type', 'max_seats','picture'];
     
     public function Flights()
     {

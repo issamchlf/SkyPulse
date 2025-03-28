@@ -1,125 +1,118 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-white leading-tight bg-gradient-to-r from-indigo-600 to-purple-500 p-4 rounded-xl shadow-2xl">
-            {{ __('SkyPulse Travel Portal') }} ✈️🌍
-        </h2>
-    </x-slot>
-
-    <div class="relative bg-gradient-to-br from-indigo-500 to-purple-600 py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center">
-                <h1 class="text-4xl font-bold text-white mb-6 animate-fade-in">
-                    Where Will You Explore Next? 🌟
-                </h1>
-                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-2xl">
-                    <div class="flex space-x-4 mb-6 border-b border-gray-200 dark:border-gray-700">
-                        <button class="px-6 py-3 font-semibold text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-500">Flights</button>
-                        
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                        <div class="relative">
-                            <input type="text" placeholder="From" class="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 focus:ring-2 focus:ring-indigo-500" />
-                            <span class="absolute right-3 top-3 text-gray-400">✈️</span>
-                        </div>
-                        <div class="relative">
-                            <input type="text" placeholder="To" class="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 focus:ring-2 focus:ring-indigo-500" />
-                            <span class="absolute right-3 top-3 text-gray-400">🌍</span>
-                        </div>
-                        <div class="relative">
-                            <input type="date" class="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 focus:ring-2 focus:ring-indigo-500" />
-                            <span class="absolute right-3 top-3 text-gray-400">📅</span>
-                        </div>
-                        <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg font-semibold transition-all transform hover:scale-105">
-                            Search Flights 🔍
-                        </button>
-                    </div>
-                </div>
-            </div>
+    <div class="flex-1 flex flex-col bg-gray-50">
+        <div class="bg-white px-6 py-4 flex space-x-6 border-b border-gray-200 overflow-x-auto">
+            <a href="#" class="whitespace-nowrap pb-2 px-4 font-semibold border-b-2 border-blue-600 text-blue-600 transition-all duration-300">
+                <span class="block text-lg">Cheapest</span>
+                <span class="text-sm font-medium text-blue-400">$217 - 5h 16m</span>
+            </a>
+            <a href="#" class="whitespace-nowrap pb-2 px-4 font-semibold border-b-2 border-transparent text-gray-500 hover:text-blue-600 hover:border-blue-400 transition-all duration-300">
+                <span class="block text-lg">Quickest</span>
+                <span class="text-sm font-medium text-gray-400">$350 - 3h 18m</span>
+            </a>
         </div>
-        <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute w-96 h-96 bg-purple-400/10 rounded-full blur-3xl -top-48 -left-48 animate-blob"></div>
-            <div class="absolute w-96 h-96 bg-indigo-400/10 rounded-full blur-3xl -top-48 -right-48 animate-blob animation-delay-2000"></div>
-        </div>
-    </div>
 
-    <div class="py-16 bg-gray-50 dark:bg-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-                <div class="lg:col-span-3">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        @foreach($flights as $flight)
-                        <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-shadow">
-                            <div class="flex items-start justify-between mb-4">
+        <div class="flex-1 flex flex-col lg:flex-row overflow-hidden">
+            <div class="flex-1 overflow-y-auto p-6 space-y-4">
+                @forelse($flights as $flight)
+                    @php
+                        $departure = \Carbon\Carbon::parse($flight->departure_time);
+                        $arrival = \Carbon\Carbon::parse($flight->arrival_time);
+                        $duration = $departure->diff($arrival)->format('%Hh %Im');
+                    @endphp
+                    <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border border-gray-100">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-4">
+                                <img src="{{ asset('img/' . $flight->plane->picture) }}" alt="Airline Logo" class="w-12 h-12 rounded-lg border-2 border-white shadow-sm" />
                                 <div>
-                                    <h4 class="text-xl font-bold text-white">{{ $flight->departure_airport }} → {{ $flight->arrival_airport }}</h4>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">• {{ $flight->available_seats }} seats available</p>
+                                    <h3 class="text-lg font-semibold text-gray-800">
+                                        {{ $departure->format('h:i A') }} – {{ $arrival->format('h:i A') }}
+                                    </h3>
+                                    <p class="text-sm text-gray-500 mt-1">
+                                        {{ $flight->departure_airport }} → {{ $flight->arrival_airport }}
+                                        <span class="mx-2">•</span>
+                                        {{ $departure->format('d M') }} – {{ $arrival->format('d M') }}
+                                    </p>
                                 </div>
-                                <img src="{{ asset('img/' . $flight->airline_logo) }}" class="w-16 h-16" alt="{{ $flight->flight_number }}" />
-                            </div>
-                            <div class="flex items-center justify-between mb-6">
-                                <div class="text-center">
-                                    <p class="font-bold text-2xl">{{ $flight->departure_code }}</p>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">{{ \Carbon\Carbon::parse($flight->departure_time)->format('d M Y, H:i') }}</p>
-                                </div>
-                                <div class="text-center mx-4">
-                                    @php
-                                        $departure = \Carbon\Carbon::parse($flight->departure_time);
-                                        $arrival = \Carbon\Carbon::parse($flight->arrival_time);
-                                        $duration = $departure->diff($arrival)->format('%Hh %Im');
-                                    @endphp
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">🕓 {{ $duration }}</p>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">{{ $flight->stops }}</p>
-                                </div>
-                                <div class="text-center">
-                                    <p class="font-bold text-2xl">{{ $flight->arrival_code }}</p>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">{{ \Carbon\Carbon::parse($flight->arrival_time)->format('d M Y, H:i') }}</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <div class="space-y-1">
-                                    <p class="text-3xl font-bold text-indigo-600">${{ $flight->price }}</p>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">{{ $flight->trip_type }}</p>
-                                </div>
-                                <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
-                                    Select ➔
-                                </button>
                             </div>
                         </div>
-                        @endforeach
+
+                        <div class="flex items-center gap-6">
+                            <div class="text-center">
+                                <p class="text-sm font-medium text-gray-500">Duration</p>
+                                <p class="text-gray-700 font-semibold mt-1">{{ $duration }}</p>
+                            </div>
+                            
+                            <div class="text-center">
+                                <p class="text-sm font-medium text-gray-500">Price</p>
+                                <p class="text-2xl font-bold text-blue-600 mt-1">${{ $flight->price }}</p>
+                            </div>
+                            
+                            <form method="GET" action="{{ route('flights.show', $flight->id) }}">
+                                <button type="submit" class="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-blue-600 transition-all shadow-sm hover:shadow-md">
+                                    Select
+                                </button>
+                            </form>
+                        </div>
                     </div>
+                @empty
+                    <div class="bg-white rounded-xl p-6 text-center border border-gray-100">
+                        <p class="text-gray-500">No flights found</p>
+                    </div>
+                @endforelse
+
+                <div class="mt-6">
+                    {{ $flights->links() }}
                 </div>
+            </div>
+
+            <div class="lg:w-80 xl:w-96 bg-white border-l border-gray-200 p-6 space-y-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-4">Filter Flights</h2>
+                
+                <form method="GET" action="" class="space-y-6">
+ 
+                    <div class="space-y-3">
+                        <h3 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">Stops</h3>
+                        <select name="stops" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <option value="">Any stops</option>
+                            <option value="0" {{ request('stops') == '0' ? 'selected' : '' }}>Nonstop</option>
+                            <option value="1" {{ request('stops') == '1' ? 'selected' : '' }}>1 Stop</option>
+                            <option value="2" {{ request('stops') == '2' ? 'selected' : '' }}>2+ Stops</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-3">
+                        <h3 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">Price Range</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="relative">
+                                <input type="number" name="min_price" placeholder="Min" 
+                                       class="w-full px-4 py-3 border border-gray-200 rounded-lg pr-10 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                                       value="{{ request('min_price') }}" />
+                                <span class="absolute right-3 top-3 text-gray-400">$</span>
+                            </div>
+                            <div class="relative">
+                                <input type="number" name="max_price" placeholder="Max" 
+                                       class="w-full px-4 py-3 border border-gray-200 rounded-lg pr-10 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                                       value="{{ request('max_price') }}" />
+                                <span class="absolute right-3 top-3 text-gray-400">$</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <h3 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">Departure Time</h3>
+                        <select name="time" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <option value="">Any time</option>
+                            <option value="morning" {{ request('time') == 'morning' ? 'selected' : '' }}>🌅 Morning (06:00 - 12:00)</option>
+                            <option value="afternoon" {{ request('time') == 'afternoon' ? 'selected' : '' }}>☀️ Afternoon (12:00 - 18:00)</option>
+                            <option value="evening" {{ request('time') == 'evening' ? 'selected' : '' }}>🌙 Evening (18:00 - 24:00)</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-500 text-white py-3.5 rounded-lg font-semibold hover:from-blue-700 hover:to-blue-600 transition-all shadow-sm hover:shadow-md">
+                        Apply Filters
+                    </button>
+                </form>
             </div>
         </div>
     </div>
-
-    <style>
-        @keyframes blob {
-            0% { transform: translate(0px, 0px) scale(1); }
-            33% { transform: translate(30px, -50px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
-            100% { transform: translate(0px, 0px) scale(1); }
-        }
-        .animate-blob {
-            animation: blob 7s infinite;
-        }
-        .range-slider::-webkit-slider-thumb {
-            width: 1.25rem;
-            height: 1.25rem;
-            background-color: #4f46e5;
-            border-radius: 9999px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        .range-slider::-webkit-slider-thumb:hover {
-            background-color: #4338ca;
-        }
-        .animate-fade-in {
-            animation: fadeIn 0.5s ease-in;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
 </x-app-layout>

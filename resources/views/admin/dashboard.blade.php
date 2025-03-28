@@ -1,195 +1,164 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Admin Dashboard ') }}
-        </h2>
-    </x-slot>
-
-    <div class="flex min-h-screen bg-gray-900">
-        <!-- Sidebar -->
-        <aside class="w-64 bg-gray-800 p-6">
+    <div class="flex min-h-screen bg-gradient-to-b from-blue-100 to-blue-200">
+        <aside class="w-64 border-r border-blue-200 bg-sky-100 p-6">
             <div class="mb-8">
-                <h3 class="text-2xl font-bold text-white">Admin Menu</h3>
+                <h3 class="text-2xl font-bold bg-gradient-to-r from-sky-500 to-blue-500 bg-clip-text text-transparent">
+                    Admin Console
+                </h3>
             </div>
             <nav>
-                <ul class="space-y-4">
+                <ul class="space-y-3">
                     <li>
-                        <a href="#"
-                           class="block px-4 py-2 text-white hover:bg-gray-700 rounded">
-                            Create Flight
+                        <a href="{{ route('admin.dashboard') }}" 
+                           class="flex items-center space-x-3 rounded-lg px-4 py-3 text-slate-600 transition-all duration-300 hover:bg-blue-100 hover:pl-6">
+                            <svg class="h-5 w-5 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                            </svg>
+                            <span>Dashboard</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#"
-                           class="block px-4 py-2 text-white hover:bg-gray-700 rounded">
-                            Edit Flights
+                        <a href="{{ route('admin.flights.create') }}" 
+                           class="flex items-center space-x-3 rounded-lg px-4 py-3 text-slate-600 transition-all duration-300 hover:bg-blue-100 hover:pl-6">
+                            <svg class="h-5 w-5 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                            </svg>
+                            <span>Create Flight</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#"
-                           class="block px-4 py-2 text-white hover:bg-gray-700 rounded">
-                            Edit Users
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#"
-                           class="block px-4 py-2 text-white hover:bg-gray-700 rounded">
-                            Add Bonus
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('admin.dashboard') }}"
-                           class="block px-4 py-2 text-white hover:bg-gray-700 rounded">
-                            Dashboard
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#"
-                           class="block px-4 py-2 text-white hover:bg-gray-700 rounded">
-                            Settings
+                        <a href="#" 
+                           class="flex items-center space-x-3 rounded-lg px-4 py-3 text-slate-600 transition-all duration-300 hover:bg-blue-100 hover:pl-6">
+                            <svg class="h-5 w-5 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                            </svg>
+                            <span>Edit Flights</span>
                         </a>
                     </li>
                 </ul>
             </nav>
         </aside>
 
-        <!-- Main Content -->
-        <div class="flex-1 p-6">
-            <div class="max-w-7xl mx-auto">
-                <!-- Dashboard Header -->
-                <div class="flex justify-between items-center mb-6">
+        <div class="flex-1 p-8">
+            <div class="mx-auto max-w-7xl">
+                <div class="mb-8 flex flex-col sm:flex-row items-center justify-between">
                     <div>
-                        <h1 class="text-3xl font-bold text-white">Hello, Issam!</h1>
-                        <p class="text-gray-400">Welcome to your futuristic dashboard</p>
-                    </div>
-                    <div>
-                        <button
-                            class="bg-indigo-600 hover:bg-indigo-700 transition-colors px-4 py-2 rounded-md text-white font-semibold flex items-center gap-2">
-                            <svg class="h-5 w-5 animate-spin-slow" fill="none" stroke="currentColor" 
-                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                      d="M4 4v6h6M20 20v-6h-6"></path>
-                            </svg>
-                            Sync Data
-                        </button>
+                        <h1 class="text-3xl font-bold text-slate-800">Welcome Back, {{ auth()->user()->name ?? 'Admin' }}</h1>
+                        <p class="mt-1 text-slate-500">Last sync: {{ now()->diffForHumans() }}</p>
                     </div>
                 </div>
 
-                <!-- Quick Stats -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-                    <!-- Orders -->
-                    <div class="bg-gray-800 p-4 rounded-lg shadow hover:shadow-xl transition-all">
-                        <h3 class="text-lg font-semibold text-white">Orders</h3>
-                        <p class="text-2xl font-bold mt-2 text-blue-400">201</p>
-                        <p class="text-green-400 text-sm">+2.2%</p>
+                <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+                    <div class="rounded-xl border border-blue-200 bg-white p-5 backdrop-blur-sm transition duration-300 hover:border-sky-300">
+                        <div class="text-slate-500 text-sm">Total Orders</div>
+                        <div class="mt-2 text-3xl font-bold text-slate-800">{{ $totalOrders }}</div>
+                        <div class="mt-2 flex items-center text-sm text-green-600">
+                            <span>▲ {{ $totalOrdersGrowth }}%</span>
+                        </div>
                     </div>
-                    <!-- Approved -->
-                    <div class="bg-gray-800 p-4 rounded-lg shadow hover:shadow-xl transition-all">
-                        <h3 class="text-lg font-semibold text-white">Approved</h3>
-                        <p class="text-2xl font-bold mt-2 text-blue-400">36</p>
-                        <p class="text-green-400 text-sm">+1.5%</p>
+                    <div class="rounded-xl border border-blue-200 bg-white p-5 backdrop-blur-sm transition duration-300 hover:border-sky-300">
+                        <div class="text-slate-500 text-sm">Approved</div>
+                        <div class="mt-2 text-3xl font-bold text-slate-800">{{ $approvedOrders }}</div>
+                        <div class="mt-2 flex items-center text-sm text-green-600">
+                            <span>▲ {{ $approvedGrowth }}%</span>
+                        </div>
                     </div>
-                    <!-- Users -->
-                    <div class="bg-gray-800 p-4 rounded-lg shadow hover:shadow-xl transition-all">
-                        <h3 class="text-lg font-semibold text-white">Users</h3>
-                        <p class="text-2xl font-bold mt-2 text-blue-400">4,890</p>
-                        <p class="text-blue-400 text-sm">+0.8% from last week</p>
-                    </div>
-                    <!-- Subscriptions -->
-                    <div class="bg-gray-800 p-4 rounded-lg shadow hover:shadow-xl transition-all">
-                        <h3 class="text-lg font-semibold text-white">Subscriptions</h3>
-                        <p class="text-2xl font-bold mt-2 text-blue-400">1,201</p>
-                        <p class="text-blue-400 text-sm">+4.7% from last month</p>
+                    <div class="rounded-xl border border-blue-200 bg-white p-5 backdrop-blur-sm transition duration-300 hover:border-sky-300">
+                        <div class="text-slate-500 text-sm">Active Users</div>
+                        <div class="mt-2 text-3xl font-bold text-slate-800">{{ $activeUsers }}</div>
+                        <div class="mt-2 text-sm text-slate-500">+{{ $activeUsers }} this month</div>
                     </div>
                 </div>
 
-                <!-- Revenue & Analytics Section -->
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-                    <!-- Revenue Cards -->
-                    <div class="lg:col-span-1 space-y-4">
-                        <!-- Month Total -->
-                        <div class="bg-gray-800 p-4 rounded-lg shadow hover:shadow-xl transition-all">
-                            <h3 class="text-lg font-semibold text-white">Month Total</h3>
-                            <p class="text-2xl font-bold mt-2 text-blue-400">$25,410</p>
-                            <p class="text-red-400 text-sm">-0.2% from last month</p>
+                <div class="mt-8 grid gap-6 lg:grid-cols-3">
+                    <div class="space-y-6 lg:col-span-1">
+                        <div class="rounded-xl bg-gradient-to-br from-white to-blue-50 p-6 shadow-xl">
+                            <div class="text-slate-500 text-sm">Monthly Revenue</div>
+                            <div class="mt-2 text-3xl font-bold text-slate-800">${{ $monthlyRevenue }}</div>
+                            <div class="mt-2 text-sm text-sky-500">▼ {{ $monthlyRevenueDecline ?? 0 }}% from last month</div>
                         </div>
-                        <!-- Revenue -->
-                        <div class="bg-gray-800 p-4 rounded-lg shadow hover:shadow-xl transition-all">
-                            <h3 class="text-lg font-semibold text-white">Revenue</h3>
-                            <p class="text-2xl font-bold mt-2 text-blue-400">$1,352</p>
-                            <p class="text-red-400 text-sm">-3.1% from last week</p>
+                        <div class="rounded-xl bg-gradient-to-br from-white to-blue-50 p-6 shadow-xl">
+                            <div class="text-slate-500 text-sm">Weekly Revenue</div>
+                            <div class="mt-2 text-3xl font-bold text-slate-800">${{ $weeklyRevenue }}</div>
+                            <div class="mt-2 text-sm text-sky-500">▼ {{ $weeklyRevenueDecline ?? 0 }}% from last week</div>
                         </div>
-                        <!-- AI-Driven Insights (Placeholder) -->
-                        <div class="bg-gradient-to-r from-indigo-600 to-purple-600 p-4 rounded-lg shadow hover:shadow-xl transition-all">
-                            <h3 class="text-lg font-semibold text-white">AI Predictions</h3>
-                            <p class="text-sm mt-2 text-blue-400">
-                                Next month’s revenue is estimated to grow by <span class="font-bold">5.4%</span> based on current trends.
-                            </p>
+                        <div class="rounded-xl bg-gradient-to-tr from-sky-300 to-blue-400 p-6 shadow-xl">
+                            <div class="text-lg font-semibold text-white">AI Forecast</div>
+                            <div class="mt-3 text-sm text-blue-100">
+                                Predictive analysis suggests <span class="font-bold text-white">{{ $aiForecast }}%</span> growth in next quarter's revenue.
+                            </div>
                         </div>
                     </div>
 
-<!-- Fake Analytics / Stats in Blue -->
-<div class="lg:col-span-2 bg-blue-900 p-6 rounded-lg shadow hover:shadow-xl transition-all">
-    <h3 class="text-xl font-semibold mb-4 text-blue-200">Sales & Revenue (2025)</h3>
-    <div class="h-64 w-full bg-blue-800 rounded-lg flex flex-col items-center justify-center">
-         <div class="text-4xl font-bold text-blue-100">10,000</div>
-         <div class="mt-2 text-lg text-blue-200">Total Sales</div>
-         <div class="text-4xl font-bold text-blue-100 mt-4">$50,000</div>
-         <div class="mt-2 text-lg text-blue-200">Revenue</div>
-         <div class="mt-4 text-2xl font-bold text-blue-100">+15%</div>
-         <div class="text-lg text-blue-200">Growth</div>
-    </div>
-</div>
-
-
-                <!-- Customer Orders Table -->
-                <div class="mt-8">
-                    <h3 class="text-xl font-semibold mb-2 text-white">Customer Orders</h3>
-                    <div class="bg-gray-800 p-4 rounded-lg shadow hover:shadow-xl transition-all">
-                        <table class="w-full">
-                            <thead>
-                                <tr class="border-b border-gray-700">
-                                    <th class="text-left py-2 text-blue-400">Name</th>
-                                    <th class="text-left py-2 text-blue-400">Location</th>
-                                    <th class="text-left py-2 text-blue-400">Date</th>
-                                    <th class="text-left py-2 text-blue-400">Status</th>
-                                    <th class="text-left py-2 text-blue-400">Amount</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="border-b border-gray-700">
-                                    <td class="py-2 text-white">Pressa</td>
-                                    <td class="text-white">London</td>
-                                    <td class="text-white">12-08-2025</td>
-                                    <td class="text-yellow-400">Processing</td>
-                                    <td class="text-white">$450</td>
-                                </tr>
-                                <tr class="border-b border-gray-700">
-                                    <td class="py-2 text-white">Mike</td>
-                                    <td class="text-white">Berlin</td>
-                                    <td class="text-white">22-09-2025</td>
-                                    <td class="text-green-400">Confirmed</td>
-                                    <td class="text-white">$320</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-2 text-white">Robert</td>
-                                    <td class="text-white">New York</td>
-                                    <td class="text-white">13-03-2025</td>
-                                    <td class="text-red-400">Declined</td>
-                                    <td class="text-white">$215</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="lg:col-span-2">
+                        <div class="h-full rounded-xl bg-gradient-to-br from-white to-blue-50 p-6 shadow-2xl">
+                            <div class="mb-6 flex items-center justify-between">
+                                <div>
+                                    <div class="text-xl font-semibold text-slate-800">2025 Performance</div>
+                                    <div class="text-sm text-slate-500">Year-to-date analytics</div>
+                                </div>
+                            </div>
+                            <div class="grid h-72 place-content-center rounded-xl bg-blue-50 p-8 text-center">
+                                <div class="text-5xl font-bold text-slate-800">{{ $totalTransactions }}</div>
+                                <div class="mt-2 text-slate-500">Total Transactions</div>
+                                <div class="mt-6 text-4xl font-bold text-slate-800">${{ $totalRevenue }}</div>
+                                <div class="mt-2 text-slate-500">Revenue Generated</div>
+                                <div class="mt-6 flex items-center justify-center space-x-2 text-green-600">
+                                    <span>▲ {{ $revenueGrowth }}%</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Logout Button -->
+                <div class="mt-8 rounded-xl border border-blue-200 bg-white p-6 shadow-2xl">
+                    <div class="mb-6 flex items-center justify-between">
+                        <div>
+                            <div class="text-xl font-semibold text-slate-800">Recent Orders</div>
+                            <div class="text-sm text-slate-500">Updated in real-time</div>
+                        </div>
+                    </div>
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b border-blue-200 text-left text-sm text-slate-500">
+                                <th class="pb-4">Client</th>
+                                <th class="pb-4">Destination</th>
+                                <th class="pb-4">Date</th>
+                                <th class="pb-4">Status</th>
+                                <th class="pb-4">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($recentOrders as $order)
+                                <tr class="border-b border-blue-200">
+                                    <td class="py-4 text-slate-800">{{ $order->user->name }}</td>
+                                    <td class="text-slate-600">{{ $order->flight->arrival_airport }}</td>
+                                    <td class="text-slate-600">{{ \Carbon\Carbon::parse($order->date)->format('d-m-Y') }}</td>
+                                    <td>
+                                        @if($order->status == 'pending')
+                                            <span class="rounded-full bg-orange-100 px-3 py-1 text-sm text-orange-600">Pending</span>
+                                        @elseif($order->status == 'Confirmed')
+                                            <span class="rounded-full bg-mint-100 px-3 py-1 text-sm text-mint-600">Confirmed</span>
+                                        @else
+                                            <span class="rounded-full bg-sky-100 px-3 py-1 text-sm text-sky-600">Declined</span>
+                                        @endif
+                                    </td>
+                                    <td class="font-medium text-slate-800">${{ $order->total_price }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
                 <div class="mt-8 flex justify-end">
                     <form method="POST" action="{{ route('adminlogout') }}">
                         @csrf
                         <x-dropdown-link :href="route('adminlogout')"
-                                         class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md font-semibold transition-colors"
-                                         onclick="event.preventDefault(); this.closest('form').submit();">
+                                        class="bg-sky-500 hover:bg-sky-600 text-white px-4 py-2 rounded-md font-semibold transition-colors"
+                                        onclick="event.preventDefault(); this.closest('form').submit();">
                             {{ __('Log Out') }}
                         </x-dropdown-link>
                     </form>
@@ -198,10 +167,13 @@
         </div>
     </div>
 
-    <!-- Custom Animation -->
     <style>
         .animate-spin-slow {
             animation: spin 2s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </x-app-layout>

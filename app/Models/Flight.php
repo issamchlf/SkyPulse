@@ -9,15 +9,21 @@ class Flight extends Model
 {
     use HasFactory;
     protected $table = 'flights';
-    protected $fillable = ['airplane_id', 'flight_number', 'departure_airport', 'arrival_airport', 'departure_time', 'arrival_time', 'price', 'available_seats', 'status'];
-
-    public function Airplane()
+    protected $fillable = [
+        'plane_id', 'flight_number', 'departure_airport', 
+        'arrival_airport', 'departure_time', 'arrival_time', 
+        'price', 'status', 'available_seats'
+    ];
+    
+    public function plane()
     {
         return $this->belongsTo(plane::class);
     }
 
-    public function User()
+    public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'reservations')
+                    ->withPivot('seats', 'total_price')
+                    ->withTimestamps();
     }
 }
