@@ -5,7 +5,6 @@ namespace Tests\Feature\Http\Controllers\Api;
 use Tests\TestCase;
 use App\Models\Flight;
 use App\Models\Plane;
-use App\Models\Reservation;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Carbon\Carbon;

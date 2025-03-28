@@ -14,9 +14,7 @@ class FlightController extends Controller
     {
         $query = Flight::query();
 
-        if ($request->filled('airlines')) {
-            $query->whereIn('airline', $request->airlines);
-        }
+
 
         if ($request->filled('stops')) {
             $query->where('stops', $request->stops);
@@ -46,9 +44,7 @@ class FlightController extends Controller
             }
         }
 
-        if ($request->filled('trip_type')) {
-            $query->where('trip_type', $request->trip_type);
-        }
+
 
         $flights = $query->paginate(10);
         $flights->appends($request->query());
@@ -88,42 +84,6 @@ class FlightController extends Controller
         $flight = Flight::findOrFail($id);
         return view('flights.show', compact('flight'));
     }
-
-    public function edit(Flight $flight)
-    {
-        if (Auth::guard('admin')->check()) {
-            return view('admin.flight.edit', compact('flight'));
-        }
-        abort(403, 'Unauthorized action.');
-    }
-
-    public function update(Request $request, Flight $id)
-    {
-        $flight = Flight::find($id);
-        $flight->update([
-            'airplane_id'      => $request->airplane_id,
-            'flight_number'    => $request->flight_number,    
-            'departure_airport' => $request->departure_airport,
-            'arrival_airport'  => $request->arrival_airport,
-            'departure_time'   => $request->departure_time,
-            'arrival_time'     => $request->arrival_time,
-            'price'            => $request->price,
-            'available_seats'  => $request->available_seats,
-            'status'           => $request->status
-        ]);
-        $flight->save();
-        return redirect()->route('flight.index');
-    }
-
-    public function destroy(Flight $flight)
-    {
-        if (Auth::guard('admin')->check()) {
-            $flight->delete();
-            return redirect()->route('flight.index');
-        }
-        abort(403, 'Unauthorized action.');
-    }
-
     public function book(Request $request, $flightId) 
     {
         $request->validate([
@@ -151,13 +111,5 @@ class FlightController extends Controller
         return redirect()->route('dashboard')->with('success', 'Flight booked successfully!');
     }
 
-    public function debook(Flight $flight)
-    {
-        if (Auth::guard('web')->check()) {
-            $user = Auth::guard('web')->user();
-            $flight->users()->detach($user->id);
-            return redirect()->route('flight.index');
-        }
-        return redirect()->route('login')->with('error', 'Please log in to debook a flight.');
-    }
+
 }
